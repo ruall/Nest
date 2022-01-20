@@ -1,5 +1,5 @@
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
-import { CreatePostDto, CreatePostDtoID } from './dto/create-post.dot';
+// import { CreatePostDto } from './dto/create-post.dot';
 import { PostsService, PostsRo } from './posts.service';
 import {
   Body,
@@ -23,7 +23,7 @@ export class PostsController {
    */
   @ApiOperation({ summary: '创建文章' })
   @Post()
-  async create(@Body() post: CreatePostDto) {
+  async create(@Body() post) {
     return await this.postsService.create(post);
   }
 
@@ -42,7 +42,7 @@ export class PostsController {
    */
   @ApiOperation({ summary: '根据ID获取文章详情' })
   @Get(':id')
-  async findById(@Param('id') id: CreatePostDtoID) {
+  async findById(@Param('id') id) {
     return await this.postsService.findById(id);
   }
 
@@ -53,7 +53,7 @@ export class PostsController {
    */
   @ApiOperation({ summary: '更新文章信息' })
   @Put(':id')
-  async update(@Param('id') id: CreatePostDtoID, @Body() post: CreatePostDto) {
+  async update(@Param('id') id, @Body() post) {
     return await this.postsService.updateById(id, post);
   }
 
@@ -63,7 +63,7 @@ export class PostsController {
    */
   @ApiOperation({ summary: '根据ID删除指定文章' })
   @Delete(':id')
-  async remove(@Param('id') id: CreatePostDtoID) {
+  async remove(@Param('id') id) {
     return await this.postsService.remove(id);
   }
 }
